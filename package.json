@@ -1,0 +1,26 @@
+{
+  "name": "samples",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": "18.12.1",
+    "npm": "use pnpm",
+    "pnpm": ">=7",
+    "yarn": "use pnpm"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Masayuki Iizuka <mas.iizuka@gmail.com>",
+  "license": "UNLICENCED",
+  "devDependencies": {
+    "@types/three": "^0.148.0",
+    "sass": "^1.57.1",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.4"
+  },
+  "dependencies": {
+    "three": "^0.148.0"
+  }
+}
