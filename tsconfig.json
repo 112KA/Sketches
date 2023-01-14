@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": "packages",
+    "sourceMap": true,
+    "target": "es2018",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "x/*": ["x/src/*"]
+    },
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+
+  "exclude": ["node_modules", "dist"]
+}

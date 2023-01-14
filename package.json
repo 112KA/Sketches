@@ -9,18 +9,23 @@
     "yarn": "use pnpm"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "pnpm --filter sketches dev",
+    "build": "pnpm --filter sketches build"
   },
   "keywords": [],
   "author": "Masayuki Iizuka <mas.iizuka@gmail.com>",
-  "license": "UNLICENCED",
+  "dependencies": {
+    "@compai/font-noto-sans": "^0.0.4",
+    "three": "^0.148.0"
+  },
   "devDependencies": {
+    "@tweakpane/core": "^1.1.1",
     "@types/three": "^0.148.0",
     "sass": "^1.57.1",
+    "tweakpane": "^3.1.1",
     "typescript": "^4.9.4",
-    "vite": "^4.0.4"
+    "vite": "^4.0.4",
+    "vite-plugin-glslify": "^2.0.1"
   },
-  "dependencies": {
-    "three": "^0.148.0"
-  }
+  "license": "MIT"
 }

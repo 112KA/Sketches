@@ -1,0 +1,16 @@
+{
+  "name": "sketches",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "_build": "tsc && vite build",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@compai/font-noto-sans": "^0.0.4",
+    "x": "workspace:@112ka/x@*"
+  }
+}

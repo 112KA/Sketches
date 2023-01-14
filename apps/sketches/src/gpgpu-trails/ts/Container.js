@@ -1,0 +1,41 @@
+import { GridHelper, PerspectiveCamera, Scene, WebGLRenderer } from 'three';
+import Stats from 'three/examples/jsm/libs/stats.module.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+export class Container {
+    constructor({ canvas }) {
+        var _a;
+        this.scene = new Scene();
+        this.camera = new PerspectiveCamera(45, 1, 0.1, 10000);
+        this.renderer = new WebGLRenderer({
+            canvas,
+            antialias: false,
+            alpha: false,
+        });
+        this.renderer.setClearColor(0x000000, 0);
+        this.renderer.setPixelRatio(1);
+        // this.renderer.shadowMap.type = PCFSoftShadowMap;
+        // this.renderer.shadowMap.enabled = true;
+        this.camera.position.set(0, 5, 10);
+        this._cameraControls = new OrbitControls(this.camera, this.renderer.domElement);
+        var grid = new GridHelper(10, 10);
+        this.scene.add(grid);
+        this._stats = new Stats();
+        (_a = document.querySelector('body')) === null || _a === void 0 ? void 0 : _a.appendChild(this._stats.dom);
+    }
+    render() {
+        this._cameraControls.update();
+        this.renderer.render(this.scene, this.camera);
+        this._stats.update();
+        // console.log('this.renderer', this.renderer);
+    }
+    resize() {
+        const width = window.innerWidth, height = window.innerHeight;
+        this.renderer.setSize(width, height);
+        this.camera.aspect = width / height;
+        this.camera.updateProjectionMatrix();
+    }
+    setDeviceSize(deviceSize) {
+        console.log({ deviceSize });
+    }
+}
+//# sourceMappingURL=Container.js.map
