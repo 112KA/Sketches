@@ -25,7 +25,7 @@ importers:
       vite: 4.0.4_sass@1.57.1
       vite-plugin-glslify: 2.0.1_vite@4.0.4
 
-  apps/samples:
+  apps/sketches:
     specifiers:
       '@compai/font-noto-sans': ^0.0.4
       x: workspace:@112ka/x@*
