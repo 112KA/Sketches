@@ -65,9 +65,6 @@ typings/
 # Output of 'npm pack'
 *.tgz
 
-# Yarn Integrity file
-.yarn-integrity
-
 # dotenv environment variables file
 .env
 .env.test
@@ -80,7 +77,6 @@ typings/
 
 # Nuxt.js build / generate output
 .nuxt
-dist
 
 # Gatsby files
 .cache/
@@ -102,3 +98,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+# outDir
+dist
+.temp

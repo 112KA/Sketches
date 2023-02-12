@@ -1,4 +1,4 @@
-import { assertIsDefined } from '..'
+import { assertIsDefined } from '../utils/assert'
 
 export type DeviceSize = 'sm' | 'md' | 'lg'
 export type EventDetail = {

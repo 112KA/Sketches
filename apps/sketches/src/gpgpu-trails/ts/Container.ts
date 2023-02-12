@@ -2,6 +2,7 @@ import { GridHelper, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
 import Stats from 'three/examples/jsm/libs/stats.module.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+
 import type { DeviceSize } from 'x/misc'
 
 export type ContainerProps = {
@@ -21,6 +22,7 @@ export class Container {
       alpha: false,
     })
     this.renderer.setClearColor(0x000000, 0)
+    // this.renderer.setPixelRatio(window.devicePixelRatio)
     this.renderer.setPixelRatio(1)
     // this.renderer.shadowMap.type = PCFSoftShadowMap;
     // this.renderer.shadowMap.enabled = true;

@@ -1,4 +1,4 @@
-import { AssertionError } from '../errors'
+import { AssertionError } from '../errors/AssertionError'
 
 export function assert(condition: any, message?: string): asserts condition {
   if (!condition) {

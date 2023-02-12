@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "packages",
     "sourceMap": true,
+    "outDir": "./.temp",
     "target": "es2018",
     "module": "esnext",
     "moduleResolution": "node",
@@ -14,5 +15,12 @@
     "esModuleInterop": true
   },
 
+  "references": [
+    {
+      "path": "packages/x"
+    }
+  ],
+
+  "include": ["packages"],
   "exclude": ["node_modules", "dist"]
 }

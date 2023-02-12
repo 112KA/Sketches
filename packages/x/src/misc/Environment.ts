@@ -15,9 +15,9 @@ class Environment {
   pc = !(this.tablet || this.ios || this.android || this.quest)
 
   support = {
-    touch: 'ontouchstart' in window || (window.DocumentTouch && document instanceof DocumentTouch),
-    pointer: window.navigator.pointerEnabled,
-    MSPointer: window.navigator.msPointerEnabled,
+    touch: 'ontouchstart' in window, // || (window.DocumentTouch && document instanceof DocumentTouch),
+    // pointer: window.navigator.pointerEnabled,
+    // MSPointer: window.navigator.msPointerEnabled,
     xr: false,
   }
 
