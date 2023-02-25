@@ -1,7 +1,8 @@
-import { Clock } from 'three'
+import { ArrowHelper, Clock, Vector3 } from 'three'
 import { assertIsDefined } from 'x/utils/assert'
 import { Container } from './Container'
 import { Particle } from './Particle'
+import { Debug } from './debug'
 
 const canvas = document.getElementById('canvas')
 assertIsDefined(canvas)
@@ -9,7 +10,8 @@ const clock = new Clock(),
   container = new Container({
     canvas,
   }),
-  particle = new Particle(container)
+  particle = new Particle(container),
+  debug = new Debug(particle)
 
 function setup() {
   update()

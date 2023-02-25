@@ -1,7 +1,7 @@
 #define delta ( 1.0 / 60.0 )
 
 void main() {
-    if(gl_FragCoord.x <= 1.0){
+    if(gl_FragCoord.x < 1.0){
         vec2 uv = gl_FragCoord.xy / resolution.xy;
 
         vec4 tmpPos = texture2D( texturePosition, uv );

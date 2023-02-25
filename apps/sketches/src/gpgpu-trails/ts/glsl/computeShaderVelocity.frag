@@ -5,6 +5,7 @@ void main()	{
 
     vec4 tmpVel = texture2D( textureVelocity, uv );
     vec3 vel = tmpVel.xyz * 0.95;
+    vel.y += -9.8 * 0.003;
     
     gl_FragColor = vec4( vel, 1.0 );
 }
