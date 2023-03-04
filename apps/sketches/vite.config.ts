@@ -11,7 +11,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         'gpgpu-particle-bravo': resolve('src/gpgpu-particle-bravo', 'index.html'),
-        'gpgpu-trails': resolve('src/gpgpu-trails', 'index.html'),
+        // 'gpgpu-trails': resolve('src/gpgpu-trails', 'index.html'),
+        grass: resolve('src/grass', 'index.html'),
         // sample1: resolve('src/sample1', 'index.html'),
         // sample2: resolve('src/sample2', 'index.html'),
       },

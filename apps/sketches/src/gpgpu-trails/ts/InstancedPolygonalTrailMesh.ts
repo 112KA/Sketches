@@ -11,33 +11,16 @@ import { TEXTURE_SIZE } from './Constants'
 
 const SIZE = TEXTURE_SIZE
 
-/**
- * □ □ □ □ □ □ □ □ □ □ - 行をinstanceにする
- * □ □ □ □ □ □ □ □ □ □
- */
-
-export class InstancedPolygonalTrailMesh extends Mesh {
+class InstancedPolygonalTrailGeometry extends InstancedBufferGeometry {
   private _nPoints: number
   constructor(private _nSectionShapes: number) {
-    const geometry = new InstancedBufferGeometry(),
-      material = new ShaderMaterial({
-        uniforms: {
-          texturePosition: { value: null },
-          textureVelocity: { value: null },
-          resolution: { value: SIZE },
-        },
-        vertexShader: InstancedPolygonalTrailShader.vertex,
-        fragmentShader: InstancedPolygonalTrailShader.fragment,
-      })
-
-    super(geometry, material)
+    super()
 
     this._nPoints = SIZE.x * this._nSectionShapes
-    geometry.instanceCount = SIZE.y
+    this.instanceCount = SIZE.y
 
     const position = new Float32Array(this._nPoints * 3),
       sectionIndex = new Float32Array(this._nPoints * 1),
-      instanceIndex = new Float32Array(geometry.instanceCount),
       indexArray = []
 
     let iPosition = 0
@@ -63,15 +46,30 @@ export class InstancedPolygonalTrailMesh extends Mesh {
       }
     }
 
-    geometry.setAttribute('position', new BufferAttribute(position, 3))
-    geometry.setAttribute('sectionIndex', new BufferAttribute(sectionIndex, 1))
-    geometry.setIndex(new BufferAttribute(new Uint32Array(indexArray), 1))
+    this.setAttribute('position', new BufferAttribute(position, 3))
+    this.setAttribute('sectionIndex', new BufferAttribute(sectionIndex, 1))
+    this.setIndex(indexArray)
+  }
+}
 
-    for (let i = 0; i < SIZE.y; i++) {
-      instanceIndex[i] = i
-    }
-    geometry.setAttribute('instanceIndex', new InstancedBufferAttribute(instanceIndex, 1))
+/**
+ * □ □ □ □ □ □ □ □ □ □ - 行をinstanceにする
+ * □ □ □ □ □ □ □ □ □ □
+ */
 
-    console.log(this)
+export class InstancedPolygonalTrailMesh extends Mesh {
+  constructor(_nSectionShapes: number) {
+    const geometry = new InstancedPolygonalTrailGeometry(_nSectionShapes),
+      material = new ShaderMaterial({
+        uniforms: {
+          texturePosition: { value: null },
+          textureVelocity: { value: null },
+          resolution: { value: SIZE },
+        },
+        vertexShader: InstancedPolygonalTrailShader.vertex,
+        fragmentShader: InstancedPolygonalTrailShader.fragment,
+      })
+
+    super(geometry, material)
   }
 }

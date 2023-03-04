@@ -1,6 +1,5 @@
 
 attribute float sectionIndex;
-attribute float instanceIndex;
 
 uniform sampler2D texturePosition;
 uniform sampler2D textureVelocity;
@@ -33,7 +32,7 @@ vec4 getQuaternion(vec3 axis, float angle) {
 
 
 void main() {
-    vec2 uv = vec2(sectionIndex, instanceIndex) / resolution;
+    vec2 uv = vec2(sectionIndex, gl_InstanceID) / resolution;
     vec2 uv0 = vec2(uv.x - 1. / resolution.x, uv.y);
 
     vec3 vel = texture2D( textureVelocity, vec2(0, uv.y) ).xyz;
