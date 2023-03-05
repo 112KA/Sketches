@@ -12,7 +12,9 @@ export default defineConfig({
       input: {
         'gpgpu-particle-bravo': resolve('src/gpgpu-particle-bravo', 'index.html'),
         // 'gpgpu-trails': resolve('src/gpgpu-trails', 'index.html'),
-        grass: resolve('src/grass', 'index.html'),
+        // grass: resolve('src/grass', 'index.html'),
+        // gradation: resolve('src/gradation', 'index.html'),
+        // instanced_skinned_mesh: resolve('src/instanced_skinned_mesh', 'index.html'),
         // sample1: resolve('src/sample1', 'index.html'),
         // sample2: resolve('src/sample2', 'index.html'),
       },
