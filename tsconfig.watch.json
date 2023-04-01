@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.build.json",
+
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "./.temp/"
+  },
+
+  "references": [
+    {
+      "path": "packages/x/tsconfig.build.json"
+    },
+    {
+      "path": "packages/x3/tsconfig.build.json"
+    }
+  ],
+  "include": []
+}

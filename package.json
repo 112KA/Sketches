@@ -9,6 +9,7 @@
     "yarn": "use pnpm"
   },
   "scripts": {
+    "watch": "tsc -b ./tsconfig.watch.json -w",
     "dev": "pnpm --filter sketches dev",
     "build": "pnpm --filter sketches build"
   },
@@ -16,6 +17,7 @@
   "author": "Masayuki Iizuka <mas.iizuka@gmail.com>",
   "dependencies": {
     "@compai/font-noto-sans": "^0.0.4",
+    "rimraf": "^4.4.0",
     "three": "^0.148.0"
   },
   "devDependencies": {

@@ -1,26 +1,10 @@
 {
+  "extends": "./tsconfig.build.json",
+
   "compilerOptions": {
-    "baseUrl": "packages",
-    "sourceMap": true,
-    "outDir": "./.temp",
-    "target": "es2018",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "strict": true,
-    "lib": ["es2018", "dom"],
     "paths": {
-      "x/*": ["x/src/*"]
-    },
-    "resolveJsonModule": true,
-    "esModuleInterop": true
-  },
-
-  "references": [
-    {
-      "path": "packages/x"
+      "x/*": ["x/src/*"],
+      "x3/*": ["x3/src/*"]
     }
-  ],
-
-  // "include": ["packages"],
-  "exclude": ["node_modules", "dist"]
+  }
 }

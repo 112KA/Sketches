@@ -19,3 +19,8 @@ declare module '*.vert' {
 }
 
 declare module '*.jpg'
+
+declare module '*.glb' {
+  const src: string
+  export default src
+}

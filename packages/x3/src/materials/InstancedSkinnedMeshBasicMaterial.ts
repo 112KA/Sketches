@@ -1,4 +1,10 @@
-import { DoubleSide, MeshPhongMaterial, Shader, WebGLRenderer } from 'three'
+import {
+  DoubleSide,
+  MeshBasicMaterial,
+  MeshBasicMaterialParameters,
+  Shader,
+  WebGLRenderer,
+} from 'three'
 
 const skinning_pars_vertex = `
 #ifdef USE_SKINNING
@@ -45,16 +51,12 @@ const skinning_pars_vertex = `
 
 #endif
 `
-export class InstancedSkinnedMeshPhongMaterial extends MeshPhongMaterial {
-  onBuild(shader: Shader, renderer: WebGLRenderer) {
-    console.log('onBuild', { shader })
-  }
-  onBeforeCompile(shader: Shader, renderer: WebGLRenderer): void {
+
+export class InstancedSkinnedMeshBasicMaterial extends MeshBasicMaterial {
+  onBeforeCompile(shader: Shader, _renderer: WebGLRenderer): void {
     shader.vertexShader = shader.vertexShader.replace(
       '#include <skinning_pars_vertex>\n',
       skinning_pars_vertex,
     )
-
-    console.log('onBeforeCompile', { vertexShader: shader.vertexShader })
   }
 }

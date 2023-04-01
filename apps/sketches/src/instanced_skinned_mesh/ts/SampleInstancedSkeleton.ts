@@ -1,5 +1,5 @@
 import { Bone } from 'three'
-import { InstancedSkeleton } from './InstancedSkeleton'
+import { InstancedSkeleton } from 'x3/objects/InstancedSkeleton'
 import { sizing } from './SampleGeometry'
 
 export class SampleInstancedSkeleton extends InstancedSkeleton {

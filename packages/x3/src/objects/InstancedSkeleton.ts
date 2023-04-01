@@ -7,13 +7,15 @@ const _identityMatrix = /*@__PURE__*/ new Matrix4()
 export class InstancedSkeleton extends Skeleton {
   constructor(bones: Bone[] = [], boneInverses: Matrix4[] = [], protected _count = 1) {
     super(bones, boneInverses)
+
+    this.boneMatrices = new Float32Array(bones.length * 16 * this._count)
+
+    console.log('_count', this._count, this.boneMatrices.length)
   }
 
   public init() {
     const bones = this.bones
     const boneInverses = this.boneInverses
-
-    this.boneMatrices = new Float32Array(bones.length * 16 * this._count)
 
     // calculate inverse bone matrices if necessary
 
@@ -74,6 +76,8 @@ export class InstancedSkeleton extends Skeleton {
       boneTexture = this.boneTexture
 
     // flatten bone matrices to array
+
+    // console.log('updateAt', { bones: this.bones })
 
     for (let i = 0, il = bones.length; i < il; i++) {
       // compute the offset between the current and the original transform

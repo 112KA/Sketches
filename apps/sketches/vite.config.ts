@@ -24,6 +24,8 @@ export default defineConfig({
             return 'vendor'
           } else if (id.includes('/x/')) {
             return 'x'
+          } else if (id.includes('/x3/')) {
+            return 'x3'
           } else {
             console.log(id)
           }
@@ -32,10 +34,11 @@ export default defineConfig({
     },
   },
   plugins: [glslify()],
-  assetsInclude: ['**/*.gltf', '**/*.frag'],
+  assetsInclude: ['**/*.gltf', '**/*.glb', '**/*.frag'],
   resolve: {
     alias: {
       x: resolve(__dirname, '../../packages/x/src'),
+      x3: resolve(__dirname, '../../packages/x3/src'),
     },
   },
 })

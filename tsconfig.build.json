@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "baseUrl": "packages",
+    "sourceMap": true,
+    "outDir": "./.temp",
+    "target": "es2018",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "x/*": ["x/dist/*"],
+      "x3/*": ["x3/dist/*"]
+    },
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+
+  // "include": ["packages"],
+  "exclude": ["**/node_modules", "**/dist"]
+}

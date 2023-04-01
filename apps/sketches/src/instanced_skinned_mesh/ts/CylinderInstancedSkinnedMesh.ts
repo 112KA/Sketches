@@ -1,6 +1,6 @@
 import { DoubleSide, MeshPhongMaterial, Object3D } from 'three'
-import { InstancedSkinnedMesh } from './InstancedSkinnedMesh'
-import { InstancedSkinnedMeshPhongMaterial } from './InstancedSkinnedMeshPhongMaterial'
+import { InstancedSkinnedMesh } from 'x3/objects/InstancedSkinnedMesh'
+import { InstancedSkinnedMeshPhongMaterial } from 'x3/materials/InstancedSkinnedMeshPhongMaterial'
 import { SampleGeometry } from './SampleGeometry'
 import { SampleInstancedSkeleton } from './SampleInstancedSkeleton'
 

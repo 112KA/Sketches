@@ -8,7 +8,7 @@ import {
   SkinnedMesh,
 } from 'three'
 import { assertIsDefined } from 'x/index'
-import { InstancedSkeleton } from './InstancedSkeleton'
+import { InstancedSkeleton } from 'x3/objects/InstancedSkeleton'
 
 const _offsetMatrix = /*@__PURE__*/ new Matrix4()
 const _identityMatrix = /*@__PURE__*/ new Matrix4()
@@ -33,15 +33,16 @@ export class InstancedSkinnedMesh<
     }
   }
 
-  copy(source: InstancedSkinnedMesh) {
+  copy(source: SkinnedMesh) {
     super.copy(source as any)
 
-    if (source.isInstancedMesh) {
-      this.instanceMatrix.copy(source.instanceMatrix)
+    if ((source as InstancedSkinnedMesh).isInstancedMesh) {
+      const sourceMesh = source as InstancedSkinnedMesh
+      this.instanceMatrix.copy(sourceMesh.instanceMatrix)
 
-      if (source.instanceColor !== null) this.instanceColor = source.instanceColor.clone()
+      if (sourceMesh.instanceColor !== null) this.instanceColor = sourceMesh.instanceColor.clone()
 
-      this.count = source.count
+      this.count = sourceMesh.count
     }
 
     return this
@@ -53,7 +54,7 @@ export class InstancedSkinnedMesh<
       return
     }
 
-    super.bind(skeleton, this.bindMatrix)
+    super.bind(skeleton, bindMatrix)
   }
 
   getMatrixAt(index: number, matrix: Matrix4) {
