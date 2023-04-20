@@ -8,13 +8,15 @@ import {
   SkeletonHelper,
 } from 'three'
 import { assertIsDefined } from 'x/utils/assert'
-import { wait } from 'x/utils/Deferred'
 import { AssetLoader } from 'x3/loaders/AsserLoader'
 import { InstancedSkeletonUtils } from 'x3/utils/InstancedSkeletonUtils'
 import { Container } from './Container'
+import { InstanceData } from './InstanceData'
 import { CylinderSkinnedMesh } from './CylinderSkinnedMesh'
 import { CylinderInstancedSkinnedMesh } from './CylinderInstancedSkinnedMesh'
 import ChiBakun from './model.glb'
+import { InstancedSkinnedMesh } from 'x3/objects/InstancedSkinnedMesh'
+import { Debug } from './debug/index'
 
 const canvas = document.getElementById('canvas')
 assertIsDefined(canvas)
@@ -29,63 +31,44 @@ const container = new Container({
 // ;(skeletonHelper.material as LineBasicMaterial).linewidth = 2
 // container.scene.add(skeletonHelper)
 
+const N_INSTANCE = 300
+
 async function setup() {
   assetLoader.addResources([{ name: 'model', path: ChiBakun }])
   await assetLoader.load()
 
   const { scene, animations } = assetLoader.models['model'] as any,
-    object = scene.getObjectByName('Armature')
-  // object.updateMatrixWorld(true)
-  const instancedObject = InstancedSkeletonUtils.convertToInstancedObject(object, 1)
-  // instancedObject = object,
-  // skeletonHelper = new SkeletonHelper(instancedObject)
-  // skeletonHelper = new SkeletonHelper(object)
+    object = scene.getObjectByName('Armature'),
+    instancedObject = InstancedSkeletonUtils.convertToInstancedObject(object, N_INSTANCE),
+    skeletonHelper = new SkeletonHelper(instancedObject)
 
-  const hipsBone0 = object.getObjectByName('mixamorigHips'),
-    hipsBone = instancedObject.getObjectByName('mixamorigHips')
-
-  console.log('model', { hipsBone0: hipsBone0.position.x, hipsBone: hipsBone.position.x })
-
-  container.scene.add(object)
   container.scene.add(instancedObject)
-  // instancedObject.position.x = 5
-  // ;(skeletonHelper.material as LineBasicMaterial).linewidth = 2
-  // container.scene.add(skeletonHelper)
-
-  // instancedObject.traverse((object: Object3D) => {
-  //   if ((object as any).isMesh) {
-  //     ;(object as Mesh).material = new MeshBasicMaterial({
-  //       map: ((object as Mesh).material as any).map,
-  //     })
-  //   }
-  // })
-
-  // await wait(3000)
-
-  // const mixer = new AnimationMixer(instancedObject),
-  const mixer = new AnimationMixer(object),
-    idleAction = mixer.clipAction(animations[0]),
-    runningAction = mixer.clipAction(animations[1])
-
-  runningAction.play()
-
-  // const matrix = new Matrix4()
-  // for (let i = 0; i < mesh.count; i++) {
-  //   matrix.identity()
-  //   matrix.makeRotationY(Math.PI * 2 * Math.random())
-  //   matrix.setPosition((0.5 - Math.random()) * 10, 0, (0.5 - Math.random()) * 10)
-  //   mesh.setMatrixAt(i, matrix)
-  // }
+  // instancedObject.position.y = 1
+  instancedObject.updateMatrix()
+  ;(skeletonHelper.material as LineBasicMaterial).linewidth = 2
+  container.scene.add(skeletonHelper)
 
   let previousTime = 0
+  const instanceDataList: InstanceData[] = []
 
+  for (let i = 0; i < N_INSTANCE; i++) {
+    instanceDataList.push(new InstanceData(i, instancedObject, animations))
+  }
+
+  const debug = new Debug(container, instanceDataList)
+
+  let _frame = 0
   container.renderer.setAnimationLoop((time: number) => {
-    // mesh.update(time)
-    const dt = (time - previousTime) / 10000
-    mixer.update(dt)
+    if (_frame++ % 2 === 0) return
+    const dt = (time - previousTime) / 1000
+    for (let i = 0; i < N_INSTANCE; i++) {
+      instanceDataList[i].update(dt)
+    }
     container.render()
 
     previousTime = time
+
+    debug.update()
   })
   resize()
 

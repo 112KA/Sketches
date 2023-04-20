@@ -63,6 +63,7 @@ export class InstancedSkinnedMesh<
 
   setMatrixAt(index: number, matrix: Matrix4) {
     matrix.toArray(this.instanceMatrix.array, index * 16)
+    this.instanceMatrix.needsUpdate = true
   }
 
   // setBonesAt(index: number, skeleton: InstancedSkeleton) {

@@ -12,6 +12,7 @@ export class Container {
   public renderer: WebGLRenderer
   public scene = new Scene()
   public camera = new PerspectiveCamera(45, 1, 0.1, 10000)
+  public grid: GridHelper
   private _cameraControls: OrbitControls
   private _stats: Stats
 
@@ -42,8 +43,8 @@ export class Container {
 
     this.scene.add(...lights)
 
-    var grid = new GridHelper(10, 10)
-    this.scene.add(grid)
+    this.grid = new GridHelper(40, 20)
+    this.scene.add(this.grid)
 
     this._stats = new (Stats as any)()
     document.querySelector('body')?.appendChild(this._stats.dom)

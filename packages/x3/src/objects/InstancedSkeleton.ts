@@ -10,7 +10,7 @@ export class InstancedSkeleton extends Skeleton {
 
     this.boneMatrices = new Float32Array(bones.length * 16 * this._count)
 
-    console.log('_count', this._count, this.boneMatrices.length)
+    // console.log('_count', this._count, this.boneMatrices.length)
   }
 
   public init() {
@@ -48,10 +48,10 @@ export class InstancedSkeleton extends Skeleton {
     }
     size.height = Math.max(size.height, 4)
 
+    // console.log({ bonesLength: this.bones.length, size }, size.width * size.height)
+
     const boneMatrices = new Float32Array(size.width * size.height * 4) // 4 floats per RGBA pixel
     boneMatrices.set(this.boneMatrices) // copy current values
-
-    console.log({ size })
 
     const boneTexture = new DataTexture(
       boneMatrices,
@@ -69,7 +69,7 @@ export class InstancedSkeleton extends Skeleton {
     return this
   }
 
-  public updateAt(index: number) {
+  public updateAt(instanceIndex: number) {
     const bones = this.bones,
       boneInverses = this.boneInverses,
       boneMatrices = this.boneMatrices,
@@ -79,13 +79,13 @@ export class InstancedSkeleton extends Skeleton {
 
     // console.log('updateAt', { bones: this.bones })
 
-    for (let i = 0, il = bones.length; i < il; i++) {
+    for (let boneIndex = 0, il = bones.length; boneIndex < il; boneIndex++) {
       // compute the offset between the current and the original transform
 
-      const matrix = bones[i].matrixWorld
+      const matrix = bones[boneIndex].matrixWorld
 
-      _offsetMatrix.multiplyMatrices(matrix, boneInverses[i])
-      _offsetMatrix.toArray(boneMatrices, 16 * (i + index * bones.length))
+      _offsetMatrix.multiplyMatrices(matrix, boneInverses[boneIndex])
+      _offsetMatrix.toArray(boneMatrices, 16 * (boneIndex + instanceIndex * bones.length))
     }
 
     if (boneTexture !== null) {
@@ -95,8 +95,8 @@ export class InstancedSkeleton extends Skeleton {
 
   public update() {
     // console.warn('no use')
-    for (let i = 0, il = this._count; i < il; i++) {
-      this.updateAt(i)
-    }
+    // for (let i = 0, il = this._count; i < il; i++) {
+    //   this.updateAt(i)
+    // }
   }
 }

@@ -20,98 +20,21 @@ export class InstancedSkeletonUtils {
         cloneLookup.set(sourceNode, clonedNode)
       },
     )
-    // console.log({ sourceLookup, cloneLookup })
 
-    // let isCalculate = false
-    // source.updateMatrixWorld(true)
-    // clone.updateMatrixWorld(true)
+    clone.traverse((node: Object3D) => {
+      // console.log('traverse', { node })
+      if (node instanceof InstancedSkinnedMesh) {
+        const clonedMesh = node
+        const sourceMesh = sourceLookup.get(node)
+        const sourceBones = (sourceMesh as SkinnedMesh).skeleton.bones
 
-    // clone.traverse((node: Object3D) => {
-    //   // console.log('traverse', { node })
-    //   if (node instanceof InstancedSkinnedMesh) {
-    //     const clonedMesh = node
-    //     const sourceMesh = sourceLookup.get(node)
-    //     const sourceBones = (sourceMesh as SkinnedMesh).skeleton.bones
-
-    //     clonedMesh.skeleton.bones = sourceBones.map((bone: Bone) => {
-    //       const clonedBone = cloneLookup.get(bone)
-    //       // clonedBone?.matrixWorld.copy(bone.matrixWorld)
-    //       // console.log(bone.name, {
-    //       //   source: bone.matrixWorld.elements,
-    //       //   clone: clonedBone?.matrixWorld.elements,
-    //       // })
-    //       return clonedBone as Bone
-    //     })
-
-    //     // if (!isCalculate) {
-    //     clonedMesh.skeleton.calculateInverses()
-    //     //   isCalculate = true
-    //     // }
-    //   }
-    //   // else if (node instanceof Bone) {
-    //   //   node.updateMatrixWorld(true)
-    //   // }
-    // })
-
-    // clone.traverse((node: Object3D) => {
-    //   if (node instanceof InstancedSkinnedMesh) {
-    //     node.skeleton.calculateInverses()
-    //   }
-    // })
-
-    // console.log({ source, clone })
-    // console.log({ source: source.matrixWorld.elements, clone: clone.matrixWorld.elements })
-    // let sourceArm = source.getObjectByName('mixamorigHips')
-    // let cloneArm = clone.getObjectByName('mixamorigHips')
-
-    // console.log({
-    //   source_mixamorigHips: sourceArm,
-    //   clone_mixamorigHips: cloneArm,
-    // })
-    // console.log({
-    //   source_mixamorigHips: sourceArm?.matrix.elements,
-    //   clone_mixamorigHips: cloneArm?.matrix.elements,
-    // })
-    // console.log({
-    //   source_mixamorigHips_position: sourceArm?.position,
-    //   clone_mixamorigHips_position: cloneArm?.position,
-    // })
-
-    // sourceArm = source.getObjectByName('mixamorigSpine')
-    // cloneArm = clone.getObjectByName('mixamorigSpine')
-
-    // console.log({
-    //   source_mixamorigSpine: sourceArm?.matrix.elements,
-    //   clone_mixamorigSpine: cloneArm?.matrix.elements,
-    // })
-
-    // sourceArm = source.getObjectByName('mixamorigSpine2')
-    // cloneArm = clone.getObjectByName('mixamorigSpine2')
-
-    // console.log({
-    //   source_mixamorigSpine2: sourceArm?.matrixWorld.elements,
-    //   clone_mixamorigSpine2: cloneArm?.matrixWorld.elements,
-    // })
-
-    // sourceArm = source.getObjectByName('mixamorigLeftShoulder')
-    // cloneArm = clone.getObjectByName('mixamorigLeftShoulder')
-
-    // console.log({
-    //   sourceArm: sourceArm?.matrixWorld.elements,
-    //   cloneArm: cloneArm?.matrixWorld.elements,
-    // })
-
-    // sourceArm = source.getObjectByName('mixamorigLeftArm')
-    // cloneArm = clone.getObjectByName('mixamorigLeftArm')
-
-    // console.log({
-    //   sourceArm: sourceArm?.matrixWorld.elements,
-    //   cloneArm: cloneArm?.matrixWorld.elements,
-    // })
-    // console.log({
-    //   source: source.children[0].skeleton.bones,
-    //   clone: clone.children[0].skeleton.bones,
-    // })
+        clonedMesh.skeleton.bones = sourceBones.map((bone: Bone) => {
+          const clonedBone = cloneLookup.get(bone)
+          clonedBone?.matrixWorld.copy(bone.matrixWorld)
+          return clonedBone as Bone
+        })
+      }
+    })
 
     return clone
   }
@@ -124,8 +47,9 @@ export class InstancedSkeletonUtils {
       clone = new InstancedSkinnedMesh(geometry, material, count).copy(source)
       clone.material = new InstancedSkinnedMeshBasicMaterial({ map: material.map })
 
-      const skeleton = new InstancedSkeleton(source.skeleton.bones, [], count)
-      clone.bind(skeleton)
+      const { bones, boneInverses } = source.skeleton,
+        skeleton = new InstancedSkeleton(bones, boneInverses, count)
+      clone.bind(skeleton, source.bindMatrix)
     } else {
       clone = source.clone(false)
     }

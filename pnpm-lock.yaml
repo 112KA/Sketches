@@ -31,11 +31,16 @@ importers:
     specifiers:
       '@compai/font-noto-sans': ^0.0.4
       x: workspace:@112ka/x@*
+      x3: workspace:@112ka/x3@*
     dependencies:
       '@compai/font-noto-sans': 0.0.4
       x: link:../../packages/x
+      x3: link:../../packages/x3
 
   packages/x:
+    specifiers: {}
+
+  packages/x3:
     specifiers: {}
 
 packages:
