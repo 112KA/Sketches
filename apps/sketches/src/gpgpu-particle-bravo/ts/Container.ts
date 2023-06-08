@@ -12,7 +12,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 import { PostProcess } from './PostProcess'
-import type { DeviceSize } from 'x/misc'
+import type { DeviceSize } from '@112ka/x'
 
 export type ContainerProps = {
   canvas: HTMLElement

@@ -9,7 +9,6 @@
     "strict": true,
     "lib": ["es2018", "dom"],
     "paths": {
-      "x/*": ["x/dist/*"],
       "x3/*": ["x3/dist/*"]
     },
     "resolveJsonModule": true,

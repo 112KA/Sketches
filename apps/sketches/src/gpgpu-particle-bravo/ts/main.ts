@@ -1,5 +1,4 @@
-import { assertIsDefined } from 'x/utils/assert'
-import { MediaQuery } from 'x/misc'
+import { assertIsDefined, MediaQuery } from '@112ka/x'
 import { Container } from './Container'
 import { Floor } from './Floor'
 import { Particle } from './Particle'

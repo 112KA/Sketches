@@ -1,5 +1,5 @@
 import { Container } from './Container'
-import { assertIsDefined } from 'x/utils/assert'
+import { assertIsDefined } from '@112ka/x'
 
 const canvas = document.getElementById('canvas')
 assertIsDefined(canvas)

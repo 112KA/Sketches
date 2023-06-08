@@ -17,7 +17,7 @@ import {
 } from 'three'
 import { InstancedGrassShader } from './glsl'
 
-import { TWO_PI } from 'x/utils/Constants'
+import { TWO_PI } from '@112ka/x'
 
 const BLADE_WIDTH = 0.1
 const BLADE_HEIGHT = 0.8

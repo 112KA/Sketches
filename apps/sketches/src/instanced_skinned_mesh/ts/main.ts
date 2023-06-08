@@ -7,7 +7,7 @@ import {
   Object3D,
   SkeletonHelper,
 } from 'three'
-import { assertIsDefined } from 'x/utils/assert'
+import { assertIsDefined } from '@112ka/x'
 import { AssetLoader } from 'x3/loaders/AsserLoader'
 import { InstancedSkeletonUtils } from 'x3/utils/InstancedSkeletonUtils'
 import { Container } from './Container'

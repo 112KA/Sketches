@@ -1,7 +1,7 @@
 import { Camera, GridHelper, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
 import Stats from 'three/examples/jsm/libs/stats.module.js'
 
-import type { DeviceSize } from 'x/misc'
+import type { DeviceSize } from '@112ka/x'
 
 export type ContainerProps = {
   canvas: HTMLElement

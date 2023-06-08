@@ -1,4 +1,4 @@
-import { assertIsDefined } from 'x/utils/assert'
+import { assertIsDefined } from '@112ka/x'
 import { Container } from './Container'
 import { Background } from './Background'
 import { Clock } from 'three'

@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@112ka/x": "^0.0.0",
     "@compai/font-noto-sans": "^0.0.4",
-    "x": "workspace:@112ka/x@*",
     "x3": "workspace:@112ka/x3@*"
   }
 }

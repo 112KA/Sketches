@@ -3,7 +3,6 @@
 
   "compilerOptions": {
     "paths": {
-      "x/*": ["x/src/*"],
       "x3/*": ["x3/src/*"]
     }
   }

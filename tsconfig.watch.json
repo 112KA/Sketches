@@ -8,9 +8,6 @@
 
   "references": [
     {
-      "path": "packages/x/tsconfig.build.json"
-    },
-    {
       "path": "packages/x3/tsconfig.build.json"
     }
   ],

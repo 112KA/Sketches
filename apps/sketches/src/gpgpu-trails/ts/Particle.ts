@@ -6,7 +6,7 @@ import { LineSegmentsMesh } from './LineSegmentsMesh'
 // import { PolygonalTrailMesh } from './PolygonalTrailMesh'
 import { InstancedPolygonalTrailMesh } from './InstancedPolygonalTrailMesh'
 import { GPUCompute } from './GPUCompute'
-import { Timeout, TimeoutEventType } from 'x/utils/Timeout'
+import { Timeout, TimeoutEventType } from '@112ka/x'
 
 export class Particle {
   private _gpuCompute: GPUCompute

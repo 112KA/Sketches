@@ -1,5 +1,5 @@
 import { Clock } from 'three'
-import { assertIsDefined } from 'x/utils/assert'
+import { assertIsDefined } from '@112ka/x'
 import { Container } from './Container'
 import { Particle } from './Particle'
 

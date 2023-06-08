@@ -36,7 +36,7 @@ import { ParticleDistanceMaterial } from './ParticleDistanceMaterial'
 import { TextObject } from './TextObject'
 import { Container } from './Container'
 import { TEXTURE_SIZE } from './Constants'
-import { DeviceSize } from 'x/misc'
+import { DeviceSize } from '@112ka/x'
 
 const SIZE = TEXTURE_SIZE,
   N_PARTICLES = SIZE * SIZE

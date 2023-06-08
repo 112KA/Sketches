@@ -102,3 +102,5 @@ typings/
 # outDir
 dist
 .temp
+
+.npmrc

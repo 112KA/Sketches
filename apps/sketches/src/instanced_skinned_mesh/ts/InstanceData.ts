@@ -8,7 +8,7 @@ import {
   Quaternion,
   Vector3,
 } from 'three'
-import { wait } from 'x/utils/Deferred'
+import { wait } from '@112ka/x'
 import { InstancedSkeleton } from 'x3/objects/InstancedSkeleton'
 import { InstancedSkinnedMesh } from 'x3/objects/InstancedSkinnedMesh'
 
